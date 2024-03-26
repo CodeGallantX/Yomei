@@ -144,4 +144,4 @@ class Transactions(models.Model):
 
     @staticmethod
     def get_recent_transactions(account, num_transactions=5):
-        return Transaction.objects.filter(account=account).order_by('-timestamp')[:num_transactions]
+        return Transactions.objects.filter(account=account).order_by('-timestamp')[:num_transactions]
