@@ -185,25 +185,22 @@ def blog(request):
 def pricing(request):
     return render(request, "InfinityFinance/pricing.html")
 
-'''def send_email(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-        
-        # Send email to admin
-        send_mail(
-            f'New message from {name}',
-            f'Name: {name}\nEmail: {email}\nMessage: {message}',
-            settings.DEFAULT_FROM_EMAIL,
-            [settings.ADMIN_EMAIL],  # Replace with your admin's email address
-            fail_silently=False,
-        )
-        
-        # Redirect the user to a thank you page or the home page
-        return HttpResponseRedirect(reverse('thank_you'))
-    else:
-        return HttpResponseRedirect(reverse('contact'))  # Redirect if not a POST request'''
+def send_email(request):  
+   if request.method == "POST": 
+       with get_connection(  
+           host=settings.EMAIL_HOST, 
+     port=settings.EMAIL_PORT,  
+     username=settings.EMAIL_HOST_USER, 
+     password=settings.EMAIL_HOST_PASSWORD, 
+     use_tls=settings.EMAIL_USE_TLS  
+       ) as connection:  
+           subject = request.POST.get("subject")  
+           email_from = settings.EMAIL_HOST_USER  
+           recipient_list = [request.POST.get("email"), ]  
+           message = request.POST.get("message")  
+           EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()  
+ 
+   return render(request, 'home.html')
 
 
 def register(request):
