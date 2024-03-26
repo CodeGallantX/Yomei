@@ -121,6 +121,10 @@ class Withdraws(models.Model):
 '''
 
 
+from django.db import models
+from django.utils import timezone
+from your_app.models import Account
+
 class Transactions(models.Model):
     TRANS_TYPE_CHOICES = (
        ('deposit', 'Deposit'),
@@ -130,12 +134,14 @@ class Transactions(models.Model):
        ('other', 'Other'),
     )
 
+    id = models.AutoField(primary_key=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.FloatField()
+    type = models.CharField(max_length=30)
     trans_type = models.CharField(max_length=20, choices=TRANS_TYPE_CHOICES)
     timestamp = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=255, blank=True)
-
+    
     class Meta:
         db_table = 'transactions'
 

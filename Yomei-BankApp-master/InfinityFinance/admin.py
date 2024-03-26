@@ -7,8 +7,8 @@ class CustomerAdmin(admin.ModelAdmin):
 class AccountAdmin(admin.ModelAdmin):
     list_display = ('Account_number', 'Owner', 'Balance')
 
-class TransactionsAdmin(admin.ModelAdmin):
-    list_display = ('Trans_ID', 'Account_number', 'Amount', 'Type')
+'''class TransactionsAdmin(admin.ModelAdmin):
+    list_display = ('Trans_ID', 'Account_number', 'Amount', 'Type')'''
 
 '''class MoneyTransfersAdmin(admin.ModelAdmin):
     list_display = ('Trans_ID', 'From_Account_number', 'To_Account_number', 'Amount')
