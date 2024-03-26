@@ -119,13 +119,7 @@ class Withdraws(models.Model):
     class Meta:
         db_table = 'withdraws' 
 '''
-
-
-from django.db import models
-from django.utils import timezone
-from your_app.models import Account
-
-class Transactions(models.Model):
+class Transaction(models.Model):
     TRANS_TYPE_CHOICES = (
        ('deposit', 'Deposit'),
        ('withdrawal', 'Withdrawal'),
@@ -150,4 +144,4 @@ class Transactions(models.Model):
 
     @staticmethod
     def get_recent_transactions(account, num_transactions=5):
-        return Transactions.objects.filter(account=account).order_by('-timestamp')[:num_transactions]
+        return Transaction.objects.filter(account=account).order_by('-timestamp')[:num_transactions]

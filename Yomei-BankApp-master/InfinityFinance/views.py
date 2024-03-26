@@ -7,7 +7,7 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 # from .models import UserProfile, Bill, AirtimePurchase
-from .models import Transactions, Wallet
+from .models import Transaction, Wallet
 from .forms import WithdrawForm, TransferForm, DepositForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -52,7 +52,7 @@ def transfer_funds(request):
                 recipient_wallet.save()
 
                 # Record the transaction
-                Transactions.objects.create(sender=sender_wallet.user, recipient=recipient_wallet.user, amount=amount)
+                Transaction.objects.create(sender=sender_wallet.user, recipient=recipient_wallet.user, amount=amount)
 
                 messages.success(request, 'Transfer successful!')
                 return redirect('transactions')  # Redirect to transactions page after successful transfer
@@ -140,9 +140,9 @@ def login_view(request):
 
 def dashboard(request):
     user = request.user
-    recent_transactions = Transactions.objects.order_by('-timestamp')[:5]
-   # wallet = Wallet.objects.get(user=user)
-    #transactions = Transaction.objects.filter(wallet=wallet)
+    recent_transactions = Transaction.objects.order_by('-timestamp')[:5]
+
+    transactions = Transaction.objects.filter(wallet=wallet)
     #bills = Bill.objects.filter(user=user)
     #airtime_purchases = AirtimePurchase.objects.filter(user=user)
 
@@ -154,7 +154,7 @@ def dashboard(request):
     context = {
         'wallet': wallet,
         'recent_transactions':recent_transactions,
-        #'transactions': transactions,
+        'transaction': transactions,
         #'bills': bills,
         #'airtime_purchases': airtime_purchases
     }
