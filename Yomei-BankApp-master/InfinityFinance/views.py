@@ -17,6 +17,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.core.mail import EmailMessage, get_connection
 import random
 
 
@@ -402,3 +403,4 @@ def test_classes(request):
     new_acc_obj = Classes.New_Account(111, cust_obj)
     new_cust_obj = Classes.New_Customer(login_obj, 'john', 'addr1', '100101')
 '''
+
