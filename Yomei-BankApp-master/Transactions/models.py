@@ -17,6 +17,8 @@ class Transaction(models.Model):
     timestamp = models.DateTimeField(add_now_add=True)
     description = models.CharField(max_length=255, blank=True)
     
+    class Meta:
+        db_table = 'transactions'
 
     def __str__(self):
         return f"{self.trans_type} - {self.amount}"
