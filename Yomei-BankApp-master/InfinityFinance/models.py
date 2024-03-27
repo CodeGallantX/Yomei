@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 
 '''
@@ -86,16 +85,6 @@ class Customer(models.Model):
     #Password = models.CharField(max_length=30)
     class Meta:
         db_table = 'customer'
-   
-class Account(models.Model):
-    Account_number = models.IntegerField(primary_key=True)
-    Owner = models.ForeignKey( Customer, on_delete=models.CASCADE)
-    Balance = models.FloatField()
-    #Name = models.CharField(max_length=200)
-    class Meta:
-        db_table = 'account'
-
-
 
 '''    
 class Deposits(models.Model): 
@@ -112,29 +101,3 @@ class Withdraws(models.Model):
     class Meta:
         db_table = 'withdraws' 
 '''
-class Transaction(models.Model):
-    TRANS_TYPE_CHOICES = (
-       ('deposit', 'Deposit'),
-       ('withdrawal', 'Withdrawal'),
-       ('transfer', 'Transfer'),
-       ('payment', 'Payment'),
-       ('other', 'Other'),
-    )
-
-    id = models.AutoField(primary_key=True)
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    amount = models.FloatField()
-    type = models.CharField(max_length=30)
-    trans_type = models.CharField(max_length=20, choices=TRANS_TYPE_CHOICES)
-    timestamp = models.DateTimeField(default=timezone.now)
-    description = models.CharField(max_length=255, blank=True)
-    
-    class Meta:
-        db_table = 'transactions'
-
-    def __str__(self):
-        return f"{self.trans_type} - {self.amount}"
-
-    @staticmethod
-    def get_recent_transactions(account, num_transactions=5):
-        return Transaction.objects.filter(account=account).order_by('-timestamp')[:num_transactions]

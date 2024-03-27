@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import Customer, Account, Transaction, Wallet
+from .models import Customer
+from Transactions.models import Transaction, Account
+
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('Cust_ID', 'Name', 'Phone_no', 'Email')
 
-class AccountAdmin(admin.ModelAdmin):
-    list_display = ('Account_number', 'Owner', 'Balance')
+'''class AccountAdmin(admin.ModelAdmin):
+    list_display = ('Account_number', 'Owner', 'Balance')'''
 
 '''class TransactionsAdmin(admin.ModelAdmin):
     list_display = ('Trans_ID', 'Account_number', 'Amount', 'Type')'''
@@ -21,4 +23,3 @@ admin.site.register(Customer)
 admin.site.register(Account)
 admin.site.register(Transaction)
 #admin.site.register(Money_Transfers)
-admin.site.register(Wallet)

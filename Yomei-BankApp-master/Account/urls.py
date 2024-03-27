@@ -3,5 +3,5 @@ from . import views
 
 # Assign urls here
 urlpatterns = [
-    path('', )
+    path('<str:account_number>/', views.account_detail, name='account_detail' ),
 ]
