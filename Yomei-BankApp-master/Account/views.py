@@ -7,4 +7,4 @@ def account_detail(request, account_number):
     account = Account.objects.get(account_number = account_number)
 
     transactions = Transaction.objects.filter(account = account)
-    return render()
+    return render(request, 'account/account_detail.html')
