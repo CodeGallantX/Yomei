@@ -7,7 +7,7 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 # from .models import UserProfile, Bill, AirtimePurchase
-from .models import Transaction, Wallet
+from Transaction.models import Transaction, Wallet
 from .forms import WithdrawForm, TransferForm, DepositForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
