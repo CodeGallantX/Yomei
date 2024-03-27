@@ -10,4 +10,10 @@ def transaction_list(request):
 def make_transaction(request):
     if request.method  == 'POST':
         form = TransactionForm(request.POST)
-        
+        if form.is_valid():
+            form.save()
+            return
+        redirect('transaction_list')
+    else:
+        form = TransactionForm()
+        return render(request, 'transactions/make_transactions.html', {'form':form})
