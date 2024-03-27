@@ -5,4 +5,9 @@ from .forms import TransactionForm
 # Create your views here.
 def transaction_list(request):
     transactions = Transaction.objects.all().order_by('-timestamp')[:5]
-    return render(request, 'transactions_.html', {'transactions':}
+    return render(request, 'transactions_.html', {'transactions':transactions})
+
+def make_transaction(request):
+    if request.method  == 'POST':
+        form = TransactionForm(request.POST)
+        
