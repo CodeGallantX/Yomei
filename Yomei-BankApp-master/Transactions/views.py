@@ -57,7 +57,7 @@ def transfer(request):
             return redirect('dashboard')  # Redirect to the dashboard page
     else:
         form = TransactionForm()
-    return render(request, 'InfinityFinance/deposit.html', {'form': form})
+    return render(request, 'InfinityFinance/dashboard', {'form': form})
 
 def payment(request):
     if request.method == 'POST':
@@ -68,6 +68,6 @@ def payment(request):
             return redirect('dashboard')  # Redirect to the dashboard page
     else:
         form = TransactionForm()
-    return render(request, 'InfinityFinance/withdrawal.html', {'form': form})
+    return render(request, 'InfinityFinance/dashboard', {'form': form})
 
 # Similarly, implement views for other transaction operations like transfer, payment, etc.
