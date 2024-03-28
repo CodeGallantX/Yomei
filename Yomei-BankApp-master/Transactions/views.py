@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Transaction
-from .forms import TransactionForm
+from Account.models import  UserProfile, Account
+from django.contrib.auth.decorators import login_required
+import json
+from .forms import TransactionForm, TransferForm
 from django.contrib import messages
 
 
@@ -47,7 +50,7 @@ def withdrawal(request):
 
 def transfer_funds(request):
     if request.method == 'POST':
-        form = TransactionForm(request.POST)
+        form = TransferForm(request.POST)
         if form.is_valid():
             # Process the form data and perform the transfer operation
             user_account = form.cleaned_data['user_account']
