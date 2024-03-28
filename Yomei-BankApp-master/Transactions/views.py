@@ -59,7 +59,7 @@ def transfer(request):
         form = TransactionForm()
     return render(request, 'InfinityFinance/deposit.html', {'form': form})
 
-def paymen(request):
+def payment(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
