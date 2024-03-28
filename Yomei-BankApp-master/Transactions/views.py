@@ -10,7 +10,6 @@ from django.contrib import messages
 def transaction_list(request):
     transactions = Transaction.objects.all().order_by('-timestamp')[:5]
     return render(request, 'InfinityFinance/dashboard.html', {'transactions':transactions})
-
 def make_transaction(request):
     if request.method  == 'POST':
         form = TransactionForm(request.POST)
