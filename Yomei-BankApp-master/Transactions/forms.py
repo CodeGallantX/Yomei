@@ -9,3 +9,4 @@ class TransactionForm(forms.ModelForm):
                   'trans_type',
                   'description'
                   ]
+        

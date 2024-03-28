@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Transaction
 from .forms import TransactionForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -19,10 +20,6 @@ def make_transaction(request):
         form = TransactionForm()
         return render(request, 'InfinityFinance/dashboard.html', {'form':form})
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Transaction
-from .forms import TransactionForm
 
 def deposit(request):
     if request.method == 'POST':
