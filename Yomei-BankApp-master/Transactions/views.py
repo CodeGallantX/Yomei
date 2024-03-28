@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Transaction
-from Account.models import  UserProfile, Account
+from Account.models import  Account
 from django.contrib.auth.decorators import login_required
 from .forms import TransactionForm, TransferForm, WithdrawForm, DepositForm
 from django.contrib import messages
