@@ -1,19 +1,18 @@
 from sqlite3 import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from Transactions.models import Transaction
-
 from .models import Account
+from .models import UserProfile, UserBankAccount, AccountData
 
-# Create your views here.
+# Create views here
+
 def account_detail(request, account_number):
-    account = Account.objects.get(account_number = account_number)
-
-    transactions = Transaction.objects.filter(account = account)
-    return render(request, 'account/account_detail.html', {'account':account,
-                                                           'transactions':transactions})        
+    # Retrieve account details based on account_number
+    # Implement your logic here
+    return render(request, 'account_detail.html', {'account': account_details})      
 
 
 def register(request):
