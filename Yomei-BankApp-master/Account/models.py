@@ -18,11 +18,11 @@ class AccountData(models.Model):
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
 
-# Adjust other models as needed
-
-class Account():  # Make Account inherit from Account
-   return self.account_number
-
+class Account(models.Model):
+    account_number = models.CharField(max_length=100)
+      
+    def __str__(self):
+        return self.account_number
     # Add other methods as needed
 
 class NewAccount(Account):

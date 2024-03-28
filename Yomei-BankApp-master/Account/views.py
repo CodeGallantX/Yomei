@@ -1,6 +1,8 @@
+from collections import UserDict
 from sqlite3 import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.models import 
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from Transactions.models import Transaction

@@ -21,3 +21,11 @@ class CustomUserCreationForm(UserCreationForm):
         if not phone_number.isdigit():
             raise forms.ValidationError('Phone number must contain only digits.')
         return phone_number
+
+
+
+
+
+
+# In Account.forms.py (for example)
+# Implement your custom forms for account-related functionalities

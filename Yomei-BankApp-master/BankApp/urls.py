@@ -25,11 +25,6 @@ urlpatterns = [
     #path('account/', infinity_views.account, name='account'),
     path('pricing/', infinity_views.pricing, name='pricing'),
     path('blog/', infinity_views.blog, name='blog'),
-    
-    path('login/', infinity_views.signin, name='login'),
-    path('logout/', infinity_views.signout, name='logout'),
-    path('register/', infinity_views.register, name='register'),
-
     path('dashboard/', infinity_views.dashboard, name='dashboard'),
     path('contact/', infinity_views.contact, name='contact'),
     #path('send-email/', infinity_views.send_email, name='send-email'),
