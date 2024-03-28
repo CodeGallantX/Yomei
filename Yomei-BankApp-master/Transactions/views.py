@@ -48,16 +48,41 @@ def withdrawal(request):
 
 # Similarly, implement views for other transaction operations like transfer, payment, etc.
 
-def transfer(request):
+def transfer_funds(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Deposit successful')
-            return redirect('dashboard')  # Redirect to the dashboard page
+            # Process the form data and perform the transfer operation
+            user_account = form.cleaned_data['user_account']
+            recipient_account = form.cleaned_data['recipient_account']
+            amount = form.cleaned_data['amount']
+            recipient_bank_name = form.cleaned_data['recipient_bank_name']
+            
+            # Assuming you have the sender and recipient objects based on their account numbers
+            sender_wallet = Wallet.objects.get(account_number=user_account)
+            recipient_wallet = Wallet.objects.get(account_number=recipient_account)
+
+            # Check if sender has enough balance
+            if sender_wallet.balance >= amount:
+                # Deduct amount from sender's wallet
+                sender_wallet.balance -= amount
+                sender_wallet.save()
+
+                # Add amount to recipient's wallet
+                recipient_wallet.balance += amount
+                recipient_wallet.save()
+
+                # Record the transaction
+                Transaction.objects.create(sender=sender_wallet.user, recipient=recipient_wallet.user, amount=amount)
+
+                messages.success(request, 'Transfer successful!')
+                return redirect('transactions')  # Redirect to transactions page after successful transfer
+            else:
+                messages.error(request, 'Insufficient balance.')
     else:
-        form = TransactionForm()
-    return render(request, 'InfinityFinance/dashboard', {'form': form})
+        form = TransferForm()
+    
+    return render(request, 'transactions.html', {'form': form})
 
 def payment(request):
     if request.method == 'POST':
