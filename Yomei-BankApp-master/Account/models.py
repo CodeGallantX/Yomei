@@ -52,7 +52,7 @@ class Transaction(models.Model):
     description = models.CharField(max_length=255, blank=True)
     
     class Meta:
-        db_table = 'transactions'
+        db_table = 'accounts'
 
     def __str__(self):
         return f"{self.trans_type} - {self.amount}"
