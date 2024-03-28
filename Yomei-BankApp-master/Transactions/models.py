@@ -23,9 +23,3 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.trans_type} - {self.amount}"
-
-
-
-
-# In Account.forms.py (for example)
-# Implement your custom forms for account-related functionalities
