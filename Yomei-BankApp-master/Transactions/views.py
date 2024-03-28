@@ -3,7 +3,7 @@ from .models import Transaction
 from Account.models import  UserProfile, Account
 from django.contrib.auth.decorators import login_required
 import json
-from .forms import TransactionForm, TransferForm
+from .forms import TransactionForm, TransferForm, WithdrawForm, DepositForm
 from django.contrib import messages
 
 
