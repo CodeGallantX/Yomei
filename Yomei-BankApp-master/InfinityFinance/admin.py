@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Customer
-from Transactions.models import Transaction, Account
+from Transactions.models import Transaction
+from Account.models import Account
 
 
 class CustomerAdmin(admin.ModelAdmin):
