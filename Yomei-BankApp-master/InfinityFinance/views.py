@@ -27,7 +27,7 @@ def home(request):
 def error_404(request, exception):
     return render(request, 'InfinityFinance/404.html', status=404)
 
-def transfer_funds(request):
+'''def transfer_funds(request):
     if request.method == 'POST':
         form = TransferForm(request.POST)
         if form.is_valid():
@@ -61,7 +61,7 @@ def transfer_funds(request):
     else:
         form = TransferForm()
     
-    return render(request, 'transactions.html', {'form': form})
+    return render(request, 'transactions.html', {'form': form})'''
 
 
 
