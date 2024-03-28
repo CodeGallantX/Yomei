@@ -59,8 +59,8 @@ def transfer_funds(request):
             recipient_bank_name = form.cleaned_data['recipient_bank_name']
             
             # Assuming you have the sender and recipient objects based on their account numbers
-            sender_wallet = Wallet.objects.get(account_number=user_account)
-            recipient_wallet = Wallet.objects.get(account_number=recipient_account)
+            sender_wallet = Account.objects.get(account_number=user_account)
+            recipient_wallet = Account.objects.get(account_number=recipient_account)
 
             # Check if sender has enough balance
             if sender_wallet.balance >= amount:

@@ -14,7 +14,7 @@ class Transaction(models.Model):
        ('other', 'Other'),
     )
 
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account.Account, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     trans_type = models.CharField(max_length=20, choices=TRANS_TYPE_CHOICES)
     timestamp = models.DateTimeField(auto_now_add=True)

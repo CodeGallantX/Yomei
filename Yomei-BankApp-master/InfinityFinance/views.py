@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
-# from .models import UserProfile, Bill, AirtimePurchase
 from Transactions.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -25,89 +24,6 @@ def home(request):
 
 def error_404(request, exception):
     return render(request, 'InfinityFinance/404.html', status=404)
-
-'''def transfer_funds(request):
-    if request.method == 'POST':
-        form = TransferForm(request.POST)
-        if form.is_valid():
-            # Process the form data and perform the transfer operation
-            user_account = form.cleaned_data['user_account']
-            recipient_account = form.cleaned_data['recipient_account']
-            amount = form.cleaned_data['amount']
-            recipient_bank_name = form.cleaned_data['recipient_bank_name']
-            
-            # Assuming you have the sender and recipient objects based on their account numbers
-            sender_wallet = Wallet.objects.get(account_number=user_account)
-            recipient_wallet = Wallet.objects.get(account_number=recipient_account)
-
-            # Check if sender has enough balance
-            if sender_wallet.balance >= amount:
-                # Deduct amount from sender's wallet
-                sender_wallet.balance -= amount
-                sender_wallet.save()
-
-                # Add amount to recipient's wallet
-                recipient_wallet.balance += amount
-                recipient_wallet.save()
-
-                # Record the transaction
-                Transaction.objects.create(sender=sender_wallet.user, recipient=recipient_wallet.user, amount=amount)
-
-                messages.success(request, 'Transfer successful!')
-                return redirect('transactions')  # Redirect to transactions page after successful transfer
-            else:
-                messages.error(request, 'Insufficient balance.')
-    else:
-        form = TransferForm()
-    
-    return render(request, 'transactions.html', {'form': form})'''
-
-
-
-'''
-def deposit(request):
-    if request.method == 'POST':
-        form = DepositForm(request.POST)
-        if form.is_valid():
-            # Process deposit
-            # Example logic:
-            account = request.user.account
-            amount = form.cleaned_data['amount']
-            # Add amount to user's account
-            account.balance += amount
-            account.save()
-            # Create transaction record for the deposit
-            Transaction.objects.create(account=account, amount=amount)
-            return redirect('account')
-    else:
-        form = DepositForm()
-    return render(request, 'InfinityFinance/deposit.html', {'form': form})
-    
-def withdraw(request):
-    if request.method == 'POST':
-        form = WithdrawForm(request.POST)
-        if form.is_valid():
-            # Process withdrawal
-            # Example logic:
-            account = request.user.account
-            amount = form.cleaned_data['amount']
-            # Check if user has sufficient balance
-            if account.balance >= amount:
-                # Deduct amount from user's account
-                account.balance -= amount
-                account.save()
-                # Create transaction record for the withdrawal
-                Transaction.objects.create(account=account, amount=-amount)
-                return redirect('account')
-            else:
-                # Insufficient balance
-                form.add_error('amount', 'Insufficient balance')
-    else:
-        form = WithdrawForm()
-    return render(request, 'InfinityFinance/withdraw.html', {'form': form})'''
-
-
-
 
 
 '''
